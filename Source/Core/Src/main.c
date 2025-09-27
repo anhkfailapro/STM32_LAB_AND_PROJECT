@@ -177,13 +177,14 @@ int main(void)
     int ledHour = 0;
     int ledMin = 0;
     int ledSec = 0;
-    /* USER CODE END 2 */
+  /* USER CODE END 2 */
 
-    /* Infinite loop */
-    /* USER CODE BEGIN WHILE */
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
     while (1)
     {
   	  clearAllClock();
+  	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
   	  //RTC_TimeTypeDef sTime;
   	  //HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
   	  ledHour = (counter / 3600) % 12;
@@ -194,12 +195,12 @@ int main(void)
   	  setNumberOnClock(ledSec);
   	  counter++;
   	  HAL_Delay(1000);
-      /* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-      /* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN 3 */
     }
-    /* USER CODE END 3 */
-  }
+  /* USER CODE END 3 */
+}
 
 /**
   * @brief System Clock Configuration
@@ -249,16 +250,19 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_A_Pin|LED_B_Pin|LED_C_Pin|LED_D_Pin
-                          |LED_E_Pin|LED_F_Pin|LED_G_Pin|LED_H_Pin
-                          |LED_J_Pin|LED_K_Pin|LED_L_Pin|LED_M_Pin, RESET);
+  HAL_GPIO_WritePin(GPIOA, LED_Pin|LED_A_Pin|LED_B_Pin|LED_C_Pin
+                          |LED_D_Pin|LED_E_Pin|LED_F_Pin|LED_G_Pin
+                          |LED_H_Pin|LED_J_Pin|LED_K_Pin|LED_L_Pin
+                          |LED_M_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LED_A_Pin LED_B_Pin LED_C_Pin LED_D_Pin
-                           LED_E_Pin LED_F_Pin LED_G_Pin LED_H_Pin
-                           LED_J_Pin LED_K_Pin LED_L_Pin LED_M_Pin */
-  GPIO_InitStruct.Pin = LED_A_Pin|LED_B_Pin|LED_C_Pin|LED_D_Pin
-                          |LED_E_Pin|LED_F_Pin|LED_G_Pin|LED_H_Pin
-                          |LED_J_Pin|LED_K_Pin|LED_L_Pin|LED_M_Pin;
+  /*Configure GPIO pins : LED_Pin LED_A_Pin LED_B_Pin LED_C_Pin
+                           LED_D_Pin LED_E_Pin LED_F_Pin LED_G_Pin
+                           LED_H_Pin LED_J_Pin LED_K_Pin LED_L_Pin
+                           LED_M_Pin */
+  GPIO_InitStruct.Pin = LED_Pin|LED_A_Pin|LED_B_Pin|LED_C_Pin
+                          |LED_D_Pin|LED_E_Pin|LED_F_Pin|LED_G_Pin
+                          |LED_H_Pin|LED_J_Pin|LED_K_Pin|LED_L_Pin
+                          |LED_M_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
