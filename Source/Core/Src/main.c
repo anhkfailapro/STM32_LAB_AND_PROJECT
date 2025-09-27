@@ -32,42 +32,44 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-// ==== LED A ====
-#define LED_A_ON()   HAL_GPIO_WritePin(LED_A_GPIO_Port, LED_A_Pin, SET)
-#define LED_A_OFF()  HAL_GPIO_WritePin(LED_A_GPIO_Port, LED_A_Pin, RESET)
 
-#define LED_B_ON()   HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, SET)
-#define LED_B_OFF()  HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, RESET)
+#define CLOCK_POSITIONS 12
 
-#define LED_C_ON()   HAL_GPIO_WritePin(LED_C_GPIO_Port, LED_C_Pin, SET)
-#define LED_C_OFF()  HAL_GPIO_WritePin(LED_C_GPIO_Port, LED_C_Pin, RESET)
+#define LED_A_OFF()   HAL_GPIO_WritePin(LED_A_GPIO_Port, LED_A_Pin, SET)
+#define LED_A_ON()  HAL_GPIO_WritePin(LED_A_GPIO_Port, LED_A_Pin, RESET)
 
-#define LED_D_ON()   HAL_GPIO_WritePin(LED_D_GPIO_Port, LED_D_Pin, SET)
-#define LED_D_OFF()  HAL_GPIO_WritePin(LED_D_GPIO_Port, LED_D_Pin, RESET)
+#define LED_B_OFF()   HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, SET)
+#define LED_B_ON()  HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, RESET)
 
-#define LED_E_ON()   HAL_GPIO_WritePin(LED_E_GPIO_Port, LED_E_Pin, SET)
-#define LED_E_OFF()  HAL_GPIO_WritePin(LED_E_GPIO_Port, LED_E_Pin, RESET)
+#define LED_C_OFF()   HAL_GPIO_WritePin(LED_C_GPIO_Port, LED_C_Pin, SET)
+#define LED_C_ON()  HAL_GPIO_WritePin(LED_C_GPIO_Port, LED_C_Pin, RESET)
 
-#define LED_F_ON()   HAL_GPIO_WritePin(LED_F_GPIO_Port, LED_F_Pin, SET)
-#define LED_F_OFF()  HAL_GPIO_WritePin(LED_F_GPIO_Port, LED_F_Pin, RESET)
+#define LED_D_OFF()   HAL_GPIO_WritePin(LED_D_GPIO_Port, LED_D_Pin, SET)
+#define LED_D_ON()  HAL_GPIO_WritePin(LED_D_GPIO_Port, LED_D_Pin, RESET)
 
-#define LED_G_ON()   HAL_GPIO_WritePin(LED_G_GPIO_Port, LED_G_Pin, SET)
-#define LED_G_OFF()  HAL_GPIO_WritePin(LED_G_GPIO_Port, LED_G_Pin, RESET)
+#define LED_E_OFF()   HAL_GPIO_WritePin(LED_E_GPIO_Port, LED_E_Pin, SET)
+#define LED_E_ON()  HAL_GPIO_WritePin(LED_E_GPIO_Port, LED_E_Pin, RESET)
 
-#define LED_H_ON()   HAL_GPIO_WritePin(LED_H_GPIO_Port, LED_H_Pin, SET)
-#define LED_H_OFF()  HAL_GPIO_WritePin(LED_H_GPIO_Port, LED_H_Pin, RESET)
+#define LED_F_OFF()   HAL_GPIO_WritePin(LED_F_GPIO_Port, LED_F_Pin, SET)
+#define LED_F_ON()  HAL_GPIO_WritePin(LED_F_GPIO_Port, LED_F_Pin, RESET)
 
-#define LED_J_ON()   HAL_GPIO_WritePin(LED_J_GPIO_Port, LED_J_Pin, SET)
-#define LED_J_OFF()  HAL_GPIO_WritePin(LED_J_GPIO_Port, LED_J_Pin, RESET)
+#define LED_G_OFF()   HAL_GPIO_WritePin(LED_G_GPIO_Port, LED_G_Pin, SET)
+#define LED_G_ON()  HAL_GPIO_WritePin(LED_G_GPIO_Port, LED_G_Pin, RESET)
 
-#define LED_K_ON()   HAL_GPIO_WritePin(LED_K_GPIO_Port, LED_K_Pin, SET)
-#define LED_K_OFF()  HAL_GPIO_WritePin(LED_K_GPIO_Port, LED_K_Pin, RESET)
+#define LED_H_OFF()   HAL_GPIO_WritePin(LED_H_GPIO_Port, LED_H_Pin, SET)
+#define LED_H_ON()  HAL_GPIO_WritePin(LED_H_GPIO_Port, LED_H_Pin, RESET)
 
-#define LED_L_ON()   HAL_GPIO_WritePin(LED_L_GPIO_Port, LED_L_Pin, SET)
-#define LED_L_OFF()  HAL_GPIO_WritePin(LED_L_GPIO_Port, LED_L_Pin, RESET)
+#define LED_J_OFF()   HAL_GPIO_WritePin(LED_J_GPIO_Port, LED_J_Pin, SET)
+#define LED_J_ON()  HAL_GPIO_WritePin(LED_J_GPIO_Port, LED_J_Pin, RESET)
 
-#define LED_M_ON()   HAL_GPIO_WritePin(LED_M_GPIO_Port, LED_M_Pin, SET)
-#define LED_M_OFF()  HAL_GPIO_WritePin(LED_M_GPIO_Port, LED_M_Pin, RESET)
+#define LED_K_OFF()   HAL_GPIO_WritePin(LED_K_GPIO_Port, LED_K_Pin, SET)
+#define LED_K_ON()  HAL_GPIO_WritePin(LED_K_GPIO_Port, LED_K_Pin, RESET)
+
+#define LED_L_OFF()   HAL_GPIO_WritePin(LED_L_GPIO_Port, LED_L_Pin, SET)
+#define LED_L_ON()  HAL_GPIO_WritePin(LED_L_GPIO_Port, LED_L_Pin, RESET)
+
+#define LED_M_OFF()   HAL_GPIO_WritePin(LED_M_GPIO_Port, LED_M_Pin, SET)
+#define LED_M_ON()  HAL_GPIO_WritePin(LED_M_GPIO_Port, LED_M_Pin, RESET)
 
 /* USER CODE END PD */
 
@@ -79,19 +81,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-const uint8_t SEG_TABLE[10] = {
-  0x3F, // 0 -> 0b00111111
-  0x06, // 1 -> 0b00000110
-  0x5B, // 2 -> 0b01011011
-  0x4F, // 3 -> 0b01001111
-  0x66, // 4 -> 0b01100110
-  0x6D, // 5 -> 0b01101101
-  0x7D, // 6 -> 0b01111101
-  0x07, // 7 -> 0b00000111
-  0x7F, // 8 -> 0b01111111
-  0x6F  // 9 -> 0b01101111
-};
-
+int ledRefCount[12] = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -142,6 +132,24 @@ void clearNumberOnClock(int num){
 	case(11): LED_M_OFF(); break;
 	}
 }
+
+void turnOnLed(int pos) {
+    if (pos < 0) return;
+    if (ledRefCount[pos] == 0) {
+        setNumberOnClock(pos);   // Bật thật sự
+    }
+    ledRefCount[pos]++;
+}
+
+void turnOffLed(int pos) {
+    if (pos < 0) return;
+    if (ledRefCount[pos] > 0) {
+        ledRefCount[pos]--;
+        if (ledRefCount[pos] == 0) {
+            clearNumberOnClock(pos); // Chỉ tắt khi không còn kim nào
+        }
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -173,28 +181,68 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  int counter = 0;
-    int ledHour = 0;
-    int ledMin = 0;
-    int ledSec = 0;
+  // Counter độc lập
+  int counterS = 0;   // giây
+  int counterM = 15;   // phút
+  int counterH = 1;   // giờ
+
+  setNumberOnClock((counterS % 60) / 5);
+  setNumberOnClock((counterM % 60) / 5);
+  setNumberOnClock(counterH % 12);
+
+  // Lưu vị trí hiện tại
+  int curSec  = -1;
+  int curMin  = -1;
+  int curHour = -1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
+  clearAllClock();
   /* USER CODE BEGIN WHILE */
-    while (1)
-    {
-  	  clearAllClock();
-  	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-  	  //RTC_TimeTypeDef sTime;
-  	  //HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-  	  ledHour = (counter / 3600) % 12;
-  	  ledMin = ((counter / 60) % 60) / 5;
-  	  ledSec =  (counter % 60) / 5;
-  	  setNumberOnClock(ledHour);
-  	  setNumberOnClock(ledMin);
-  	  setNumberOnClock(ledSec);
-  	  counter++;
-  	  HAL_Delay(1000);
+   while (1)
+   {
+	   int newSec  = (counterS % 60) / 5;
+	   int newMin  = (counterM % 60) / 5;
+	   int newHour = (counterH % 12);
+
+	   	   // --- Update kim giây ---
+	   if (newSec != curSec) {
+		   turnOffLed(curSec);
+		   turnOnLed(newSec);
+		   curSec = newSec;
+	   }
+
+	   // --- Update kim phút ---
+	   if (newMin != curMin) {
+		   turnOffLed(curMin);
+		   turnOnLed(newMin);
+		   curMin = newMin;
+	   }
+
+   // --- Update kim giờ ---
+	   if (newHour != curHour) {
+		   turnOffLed(curHour);
+		   turnOnLed(newHour);
+		   curHour = newHour;
+	   }
+
+	   HAL_Delay(1000);
+	   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
+   // --- Tăng counter ---
+	   counterS++;
+	   if (counterS >= 60) {
+		   counterS = 0;
+		   counterM++;
+	   }
+	   if (counterM >= 60) {
+		   counterM = 0;
+		   counterH++;
+	   }
+	   if (counterH >= 12) {
+		   counterH = 0;
+	   }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
