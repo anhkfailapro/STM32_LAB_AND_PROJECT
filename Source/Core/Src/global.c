@@ -5,9 +5,13 @@
  *      Author: Admin
  */
 #include "global.h"
-
 int status = 0;
+int temp = 0;
 int counter = 0;
+int counter_green = 3;
+int counter_yellow = 2;
+int counter_red = 5;
+
 const uint8_t SEG_TABLE[10] = {
   0x3F, // 0 -> 0b00111111
   0x06, // 1 -> 0b00000110

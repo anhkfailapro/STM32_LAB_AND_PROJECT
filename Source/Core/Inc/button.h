@@ -10,14 +10,15 @@
 
 #include "main.h"
 
-extern int button1_flag;
+#define NUM_OF_BUTTONS 3
 
 #define NORMAL_STATE GPIO_PIN_SET
 #define PRESSED_STATE GPIO_PIN_RESET
 
-int isButton1Pressed();
-void subKeyProcess();
-void getKeyInput();
+extern int button_flag[NUM_OF_BUTTONS];
 
+int isButtonPressed(int index);
+void getKeyInput(void);
+void subKeyProcess(int index);
 
 #endif /* INC_BUTTON_H_ */

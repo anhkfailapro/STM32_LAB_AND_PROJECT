@@ -1,4 +1,4 @@
-global.c:24:6:display7SEG	24	static
-global.c:35:6:display7SEG2	24	static
-global.c:47:6:allOn	8	static
-global.c:73:6:SEG_Off	8	static
+global.c:28:6:display7SEG	24	static
+global.c:39:6:display7SEG2	24	static
+global.c:51:6:allOn	8	static
+global.c:77:6:SEG_Off	8	static
