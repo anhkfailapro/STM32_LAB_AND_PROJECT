@@ -25,6 +25,9 @@ const uint8_t SEG_TABLE[10] = {
   0x6F  // 9 -> 0b01101111
 };
 
+int index_led = 0;
+int led_buffer[4] = {1,2,3,4};
+
 void display7SEG(int num){
 	if(num>9) return;
 	uint8_t pattern = SEG_TABLE[num];

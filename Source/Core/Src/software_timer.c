@@ -1,32 +1,77 @@
-/*
- * software_timer.c
+
+ /* software_timer.c
  *
  *  Created on: Sep 4, 2025
  *      Author: Admin
  */
 
-
 #include "software_timer.h"
 
-int timer_counter[NUM_OF_TIMERS] = {0};
-int timer_flag[NUM_OF_TIMERS] = {0};
+// Timer 0
+int timer0_counter = 0;
+int timer0_flag = 0;
 
-void setTimer(int index, int duration){
-	if(index >= 0 && index < NUM_OF_TIMERS){
-		timer_counter[index] = duration;
-		timer_flag[index] = 0;
-	}
+void setTimer0(int duration){
+	timer0_counter = duration;
+	timer0_flag = 0;
 }
 
-void timerRun(void){
-	for(int i = 0; i < NUM_OF_TIMERS; i++){
-		if(timer_counter[i] > 0){
-			timer_counter[i]--;
-			if(timer_counter[i] <= 0){
-				timer_flag[i] = 1;
-			}
-		}
-	}
+void timerRun0(){
+	if(timer0_counter > 0)
+		if(--timer0_counter <= 0)
+			timer0_flag = 1;
+}
+
+// Timer 1
+int timer1_counter = 0;
+int timer1_flag = 0;
+
+void setTimer1(int duration){
+	timer1_counter = duration;
+	timer1_flag = 0;
+}
+
+void timerRun1(){
+	if(timer1_counter > 0)
+		if(--timer1_counter <= 0)
+			timer1_flag = 1;
+}
+
+// Timer 2
+int timer2_counter = 0;
+int timer2_flag = 0;
+
+void setTimer2(int duration){
+	timer2_counter = duration;
+	timer2_flag = 0;
+}
+
+void timerRun2(){
+	if(timer2_counter > 0)
+		if(--timer2_counter <= 0)
+			timer2_flag = 1;
+}
+
+// Timer 3
+int timer3_counter = 0;
+int timer3_flag = 0;
+
+void setTimer3(int duration){
+	timer3_counter = duration;
+	timer3_flag = 0;
+}
+
+void timerRun3(){
+	if(timer3_counter > 0)
+		if(--timer3_counter <= 0)
+			timer3_flag = 1;
+}
+
+void timerRun(){
+	timerRun1();
+	timerRun2();
+	timerRun3();
+	timerRun0();
 }
 
 

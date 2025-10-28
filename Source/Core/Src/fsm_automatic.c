@@ -11,7 +11,9 @@ void fsm_automatic_run(){
 	case INIT:
 		allOn();
 		status = S0;
-		setTimer(1, counter_green * 100);
+		setTimer1(counter_green * 100);
+		setTimer2(50);
+		setTimer3(100);
 		counter = counter_green;
 		break;
 
@@ -24,17 +26,20 @@ void fsm_automatic_run(){
 		YELLOW_OFF();
 		GREEN_OFF();
 
-		display7SEG(counter);
+		led_buffer[0] = counter % 10;
+		led_buffer[1] = counter / 10;
+		led_buffer[2] = (counter + counter_yellow) % 10;
+		led_buffer[3] = (counter + counter_yellow) / 10;
 
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S1;
 			counter = counter_yellow;
-			setTimer(1, counter_yellow * 100);
+			setTimer1(counter_yellow * 100);
 		}
 
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = SET_RED;
+			temp = 1;
 		}
 		break;
 
@@ -47,17 +52,20 @@ void fsm_automatic_run(){
 		YELLOW_OFF();
 		GREEN_OFF();
 
-		display7SEG(counter);
+		led_buffer[0] = counter % 10;
+		led_buffer[1] = counter / 10;
+		led_buffer[2] = counter % 10;
+		led_buffer[3] = counter / 10;
 
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S2;
 			counter = counter_red;
-			setTimer(1, counter_red * 100);
+			setTimer1(counter_green * 100);
 		}
 
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = SET_RED;
+			temp = 1;
 		}
 		break;
 
@@ -70,17 +78,20 @@ void fsm_automatic_run(){
 		YELLOW_OFF();
 		GREEN_ON();
 
-		display7SEG(counter);
+		led_buffer[0] = counter % 10;
+		led_buffer[1] = counter / 10;
+		led_buffer[2] = (counter - counter_yellow) % 10;
+		led_buffer[3] = (counter - counter_yellow) / 10;
 
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S3;
 			counter = counter_yellow;
-			setTimer(1, counter_yellow * 100);
+			setTimer1(counter_yellow * 100);
 		}
 
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = SET_RED;
+			temp = 1;
 		}
 		break;
 
@@ -93,21 +104,25 @@ void fsm_automatic_run(){
 		YELLOW_ON();
 		GREEN_OFF();
 
-		display7SEG(counter);
+		led_buffer[0] = counter % 10;
+		led_buffer[1] = counter / 10;
+		led_buffer[2] = counter % 10;
+		led_buffer[3] = counter / 10;
 
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S0;
 			counter = counter_green;
-			setTimer(1, counter_green * 100);
+			setTimer1(counter_green * 100);
 		}
 
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = SET_RED;
+			temp = 1;
 		}
 		break;
 
 	default:
+		fsm_setup_run();
 		break;
 	}
 }

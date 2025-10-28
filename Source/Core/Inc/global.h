@@ -18,12 +18,12 @@
 #define S3 5	//NS_Red, EW_Yellow
 
 #define SET_RED 12
-#define SET_GREEN 13
-#define SET_YELLOW 14
+#define SET_GREEN 14
+#define SET_YELLOW 13
 
-#define Change_green 22
-#define Change_red 23
-#define Change_yellow 24
+#define Change_green 94
+#define Change_red 92
+#define Change_yellow 93
 
 #define LED_RED_ON()   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET)   // active-high
 #define LED_RED_OFF()  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET)
@@ -58,6 +58,9 @@ extern int counter_red;
 extern int counter_yellow;
 extern int temp;
 extern const uint8_t SEG_TABLE[10];
+
+extern int index_led;
+extern int led_buffer[4];
 
 void allOn();
 void display7SEG(int num);

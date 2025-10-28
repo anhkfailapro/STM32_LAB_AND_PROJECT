@@ -9,6 +9,7 @@
 #define INC_FSM_AUTOMATIC_H_
 
 #include "global.h"
+#include "fsm_setup.h"
 
 void fsm_automatic_run();
 
