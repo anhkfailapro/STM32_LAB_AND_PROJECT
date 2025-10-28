@@ -43,9 +43,9 @@
 #define GREEN_ON()   HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, SET) // active-low
 #define GREEN_OFF()  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, RESET)
 
-#define GREEN_Toggle() HAL_GPIO_Toggle(GREEN_GPIO_Port, GREEN_Pin)
-#define YELLOW_Toggle() HAL_GPIO_Toggle(YELLOW_GPIO_Port, YELLOW_Pin)
-#define RED_Toggle() HAL_GPIO_Toggle(RED_GPIO_Port, RED_Pin)
+#define GREEN_Toggle() HAL_GPIO_TogglePin(GREEN_GPIO_Port, GREEN_Pin)
+#define YELLOW_Toggle() HAL_GPIO_TogglePin(YELLOW_GPIO_Port, YELLOW_Pin)
+#define RED_Toggle() HAL_GPIO_TogglePin(RED_GPIO_Port, RED_Pin)
 
 #define LED_GREEN_Toggle() HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin)
 #define LED_YELLOW_Toggle() HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin)

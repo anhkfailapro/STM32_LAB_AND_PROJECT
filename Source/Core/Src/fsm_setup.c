@@ -54,14 +54,10 @@ void fsm_setup_run(){
 	        if (timer_flag[2] == 1) {
 	            setTimer(2, 50); // 50 * 10ms = 500ms
 	            LED_RED_Toggle();
+	            RED_Toggle();
 	        }
 	        LED_YELLOW_OFF();
 	        LED_GREEN_OFF();
-
-	        // Bật chỉ báo trạng thái setup
-	        RED_OFF();
-	        YELLOW_OFF();
-	        GREEN_ON();
 
 	        // Hiển thị giá trị temp lên 7 đoạn
 	        display7SEG(temp);
@@ -85,13 +81,10 @@ void fsm_setup_run(){
 	        if (timer_flag[2] == 1) {
 	            setTimer(2, 50);
 	            LED_GREEN_Toggle();
+	            GREEN_Toggle();
 	        }
 	        LED_RED_OFF();
 	        LED_YELLOW_OFF();
-
-	        RED_ON();
-	        YELLOW_OFF();
-	        GREEN_OFF();
 
 	        display7SEG(temp);
 
@@ -112,13 +105,10 @@ void fsm_setup_run(){
 	        if (timer_flag[2] == 1) {
 	            setTimer(2, 50);
 	            LED_YELLOW_Toggle();
+	            YELLOW_Toggle();
 	        }
 	        LED_RED_OFF();
 	        LED_GREEN_OFF();
-
-	        RED_ON();
-	        YELLOW_OFF();
-	        GREEN_OFF();
 
 	        display7SEG(temp);
 

@@ -209,14 +209,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3|AUTO_Pin|LED_RED_Pin|LED_YELLOW_Pin
-                          |LED_GREEN_Pin|RED_Pin|YELLOW_Pin|GREEN_Pin
-                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, AUTO_Pin|LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin
+                          |RED_Pin|YELLOW_Pin|GREEN_Pin|Button1_Pin
+                          |Button2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG_A_Pin|SEG_B_Pin|SEG_C_Pin|D_Pin
@@ -224,18 +223,12 @@ static void MX_GPIO_Init(void)
                           |SEG_E_Pin|SEG_F_Pin|SEG_G_Pin|A_Pin
                           |B_Pin|C_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Button1_Pin Button2_Pin Button3_Pin */
-  GPIO_InitStruct.Pin = Button1_Pin|Button2_Pin|Button3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PA3 AUTO_Pin LED_RED_Pin LED_YELLOW_Pin
-                           LED_GREEN_Pin RED_Pin YELLOW_Pin GREEN_Pin
-                           PA11 PA12 PA13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_3|AUTO_Pin|LED_RED_Pin|LED_YELLOW_Pin
-                          |LED_GREEN_Pin|RED_Pin|YELLOW_Pin|GREEN_Pin
-                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13;
+  /*Configure GPIO pins : AUTO_Pin LED_RED_Pin LED_YELLOW_Pin LED_GREEN_Pin
+                           RED_Pin YELLOW_Pin GREEN_Pin Button1_Pin
+                           Button2_Pin */
+  GPIO_InitStruct.Pin = AUTO_Pin|LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin
+                          |RED_Pin|YELLOW_Pin|GREEN_Pin|Button1_Pin
+                          |Button2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -253,6 +246,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Button3_Pin EN0_Pin EN1_Pin */
+  GPIO_InitStruct.Pin = Button3_Pin|EN0_Pin|EN1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
