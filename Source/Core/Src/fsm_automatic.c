@@ -11,7 +11,7 @@ void fsm_automatic_run(){
 	case INIT:
 		allOn();
 		status = S0;
-		setTimer(1, counter_green * 100);
+		setTimer(1, 300);
 		counter = counter_green;
 		break;
 
@@ -24,12 +24,10 @@ void fsm_automatic_run(){
 		YELLOW_OFF();
 		GREEN_OFF();
 
-		display7SEG(counter);
-
 		if(timer_flag[1] == 1){
 			status = S1;
 			counter = counter_yellow;
-			setTimer(1, counter_yellow * 100);
+			setTimer(1, 200);
 		}
 
 		if(isButtonPressed(1) == 1){
@@ -52,7 +50,7 @@ void fsm_automatic_run(){
 		if(timer_flag[1] == 1){
 			status = S2;
 			counter = counter_red;
-			setTimer(1, counter_red * 100);
+			setTimer(1, 300);
 		}
 
 		if(isButtonPressed(1) == 1){
@@ -75,7 +73,7 @@ void fsm_automatic_run(){
 		if(timer_flag[1] == 1){
 			status = S3;
 			counter = counter_yellow;
-			setTimer(1, counter_yellow * 100);
+			setTimer(1, 200);
 		}
 
 		if(isButtonPressed(1) == 1){
@@ -98,7 +96,7 @@ void fsm_automatic_run(){
 		if(timer_flag[1] == 1){
 			status = S0;
 			counter = counter_green;
-			setTimer(1, counter_green * 100);
+			setTimer(1, 300);
 		}
 
 		if(isButtonPressed(1) == 1){

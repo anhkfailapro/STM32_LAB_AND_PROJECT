@@ -103,7 +103,6 @@ int main(void)
   counter_red = 5;
   counter_yellow = 2;
   setTimer(0,100);
-  setTimer(2,1);
   while (1)
   {
 	  fsm_automatic_run();
@@ -111,7 +110,7 @@ int main(void)
 		  HAL_GPIO_TogglePin(AUTO_GPIO_Port, AUTO_Pin);
 		  setTimer(0,100);
 	  }
-	  fsm_setup_run();
+	  //fsm_setup_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
