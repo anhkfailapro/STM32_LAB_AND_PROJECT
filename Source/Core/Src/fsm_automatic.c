@@ -11,11 +11,10 @@ void fsm_automatic_run(){
 	case INIT:
 		allOn();
 		status = S0;
-		setTimer(1, 300);
-		counter = counter_green;
+		setTimer1(300);
+		counter = 3;
 		break;
-
-	case S0: // //NS_Green, EW_Red
+	case S0:
 		LED_RED_OFF();
 		LED_YELLOW_OFF();
 		LED_GREEN_ON();
@@ -24,19 +23,17 @@ void fsm_automatic_run(){
 		YELLOW_OFF();
 		GREEN_OFF();
 
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S1;
-			counter = counter_yellow;
-			setTimer(1, 200);
+			counter = 2;
+			setTimer1(200);
 		}
-
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = MAN_GREEN;
+			setTimer1(200);
 		}
 		break;
-
-	case S1: //NS_Yellow, EW_Red
+	case S1:
 		LED_RED_OFF();
 		LED_YELLOW_ON();
 		LED_GREEN_OFF();
@@ -46,20 +43,17 @@ void fsm_automatic_run(){
 		GREEN_OFF();
 
 		display7SEG(counter);
-
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S2;
-			counter = counter_red;
-			setTimer(1, 300);
+			counter = 3;
+			setTimer1(300);
 		}
-
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = MAN_YELLOW;
+			setTimer1(200);
 		}
 		break;
-
-	case S2: //NS_Red, EW_Green
+	case S2:
 		LED_RED_ON();
 		LED_YELLOW_OFF();
 		LED_GREEN_OFF();
@@ -69,20 +63,17 @@ void fsm_automatic_run(){
 		GREEN_ON();
 
 		display7SEG(counter);
-
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S3;
-			counter = counter_yellow;
-			setTimer(1, 200);
+			counter = 2;
+			setTimer1(200);
 		}
-
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
+		if(isButton1Pressed() == 1){
+			status = MAN_RED;
+			setTimer1(200);
 		}
 		break;
-
-	case S3: //NS_Red, EW_Yellow
+	case S3:
 		LED_RED_ON();
 		LED_YELLOW_OFF();
 		LED_GREEN_OFF();
@@ -92,20 +83,19 @@ void fsm_automatic_run(){
 		GREEN_OFF();
 
 		display7SEG(counter);
-
-		if(timer_flag[1] == 1){
+		if(timer1_flag == 1){
 			status = S0;
-			counter = counter_green;
-			setTimer(1, 300);
+			counter = 3;
+			setTimer1(300);
+		}
+		if(isButton1Pressed() == 1){
+			status = MAN_RED;
+			setTimer1(200);
 		}
 
-		if(isButtonPressed(1) == 1){
-			status = SET_GREEN;
-			temp = 0;
-		}
 		break;
-
 	default:
 		break;
 	}
+	//counter--;
 }
