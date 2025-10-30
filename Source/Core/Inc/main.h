@@ -58,10 +58,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define EN1_Pin GPIO_PIN_1
-#define EN1_GPIO_Port GPIOA
-#define EN2_Pin GPIO_PIN_2
-#define EN2_GPIO_Port GPIOA
+#define Button1_Pin GPIO_PIN_13
+#define Button1_GPIO_Port GPIOC
+#define WR_Pin GPIO_PIN_1
+#define WR_GPIO_Port GPIOA
+#define WY_Pin GPIO_PIN_2
+#define WY_GPIO_Port GPIOA
+#define WG_Pin GPIO_PIN_3
+#define WG_GPIO_Port GPIOA
 #define AUTO_Pin GPIO_PIN_4
 #define AUTO_GPIO_Port GPIOA
 #define LED_RED_Pin GPIO_PIN_5
@@ -90,16 +94,12 @@ void Error_Handler(void);
 #define YELLOW_GPIO_Port GPIOA
 #define GREEN_Pin GPIO_PIN_10
 #define GREEN_GPIO_Port GPIOA
-#define Button1_Pin GPIO_PIN_11
-#define Button1_GPIO_Port GPIOA
-#define Button2_Pin GPIO_PIN_12
-#define Button2_GPIO_Port GPIOA
-#define Button3_Pin GPIO_PIN_13
-#define Button3_GPIO_Port GPIOA
-#define EN0_Pin GPIO_PIN_14
-#define EN0_GPIO_Port GPIOA
-#define EN1A15_Pin GPIO_PIN_15
-#define EN1A15_GPIO_Port GPIOA
+#define Down_Pin GPIO_PIN_11
+#define Down_GPIO_Port GPIOA
+#define Up_Pin GPIO_PIN_12
+#define Up_GPIO_Port GPIOA
+#define Walk_Pin GPIO_PIN_13
+#define Walk_GPIO_Port GPIOA
 #define SEG_D_Pin GPIO_PIN_3
 #define SEG_D_GPIO_Port GPIOB
 #define SEG_E_Pin GPIO_PIN_4

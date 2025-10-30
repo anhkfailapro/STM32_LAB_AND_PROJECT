@@ -11,118 +11,127 @@ void fsm_automatic_run(){
 	case INIT:
 		allOn();
 		status = S0;
-		setTimer1(counter_green * 100);
-		setTimer2(50);
-		setTimer3(100);
-		counter = counter_green;
+		counter = 3;
+		counter_ped = 2;
+		setTimer1(100);
 		break;
+	case S0: // NS xanh, EW đỏ
+		LED_RED_OFF(); LED_YELLOW_OFF(); LED_GREEN_ON();
+		RED_ON(); YELLOW_OFF(); GREEN_OFF();
 
-	case S0: // //NS_Green, EW_Red
-		LED_RED_OFF();
-		LED_YELLOW_OFF();
-		LED_GREEN_ON();
-
-		RED_ON();
-		YELLOW_OFF();
-		GREEN_OFF();
-
-		led_buffer[0] = counter % 10;
-		led_buffer[1] = counter / 10;
-		led_buffer[2] = (counter + counter_yellow) % 10;
-		led_buffer[3] = (counter + counter_yellow) / 10;
+		display7SEG(counter);
+		display7SEG2(counter+2);
 
 		if(timer1_flag == 1){
+			counter--;
+			setTimer1(100);
+			if(counter <= 0){
+				status = S1;
+				counter = 2;
+				setTimer1(100);
+			}
+		}
+		if(isButton1Pressed() == 1){
+			status = MAN_GREEN;
+			setTimer1(200);
+		}
+		if(isButton4Pressed() == 1){
+			runTimer2();
 			status = S1;
-			counter = counter_yellow;
-			setTimer1(counter_yellow * 100);
-		}
-
-		if(isButton1Pressed() == 1){
-			status = SET_RED;
-			temp = 1;
+			status_ped = WAIT;
+			counter_ped = 2;
+			counter = 2;
+			setTimer1(100);
 		}
 		break;
+	case S1: // NS vàng, EW đỏ
+		LED_RED_OFF(); LED_YELLOW_ON(); LED_GREEN_OFF();
+		RED_ON(); YELLOW_OFF(); GREEN_OFF();
 
-	case S1: //NS_Yellow, EW_Red
-		LED_RED_OFF();
-		LED_YELLOW_ON();
-		LED_GREEN_OFF();
-
-		RED_ON();
-		YELLOW_OFF();
-		GREEN_OFF();
-
-		led_buffer[0] = counter % 10;
-		led_buffer[1] = counter / 10;
-		led_buffer[2] = counter % 10;
-		led_buffer[3] = counter / 10;
+		display7SEG(counter);
+		display7SEG2(counter);
 
 		if(timer1_flag == 1){
-			status = S2;
-			counter = counter_red;
-			setTimer1(counter_green * 100);
+			counter--;
+			setTimer1(100);
+			if(counter <= 0){
+				status = S2;
+				counter = 3;
+				setTimer1(100);
+			}
 		}
-
 		if(isButton1Pressed() == 1){
-			status = SET_RED;
-			temp = 1;
+			status = MAN_YELLOW;
+			setTimer1(200);
+		}
+		if(isButton4Pressed() == 1){
+			runTimer2();
+			status_ped = WAIT;
+			counter_ped = counter;
+			setTimer1(100);
 		}
 		break;
+	case S2: // NS đỏ, EW xanh
+		LED_RED_ON(); LED_YELLOW_OFF(); LED_GREEN_OFF();
+		RED_OFF(); YELLOW_OFF(); GREEN_ON();
 
-	case S2: //NS_Red, EW_Green
-		LED_RED_ON();
-		LED_YELLOW_OFF();
-		LED_GREEN_OFF();
-
-		RED_OFF();
-		YELLOW_OFF();
-		GREEN_ON();
-
-		led_buffer[0] = counter % 10;
-		led_buffer[1] = counter / 10;
-		led_buffer[2] = (counter - counter_yellow) % 10;
-		led_buffer[3] = (counter - counter_yellow) / 10;
+		display7SEG(counter+2);
+		display7SEG2(counter);
 
 		if(timer1_flag == 1){
+			counter--;
+			setTimer1(100);
+			if(counter <= 0){
+				status = S3;
+				counter = 2;
+				setTimer1(100);
+			}
+		}
+		if(isButton1Pressed() == 1){
+			status = MAN_RED;
+			setTimer1(200);
+		}
+		if(isButton4Pressed() == 1){
+			runTimer2();
+			status_ped = PED_GREEN;
+			counter_ped = 3;
+			counter = 3;
+			setTimer1(100);
+		}
+		break;
+	case S3: // NS đỏ, EW vàng
+		LED_RED_ON(); LED_YELLOW_OFF(); LED_GREEN_OFF();
+		RED_OFF(); YELLOW_ON(); GREEN_OFF();
+
+		display7SEG(counter);
+		display7SEG2(counter);
+
+		if(timer1_flag == 1){
+			counter--;
+			setTimer1(100);
+			if(counter <= 0){
+				status = S0;
+				counter = 3;
+				setTimer1(100);
+			}
+		}
+		if(isButton1Pressed() == 1){
+			status = MAN_RED;
+			setTimer1(200);
+		}
+		if(isButton4Pressed() == 1){
+			runTimer2();
+			status_ped = PED_GREEN;
+			counter_ped = 3;
 			status = S3;
-			counter = counter_yellow;
-			setTimer1(counter_yellow * 100);
-		}
-
-		if(isButton1Pressed() == 1){
-			status = SET_RED;
-			temp = 1;
+			counter = PED_EXTRA;
+			setTimer1(100);
 		}
 		break;
-
-	case S3: //NS_Red, EW_Yellow
-		LED_RED_ON();
-		LED_YELLOW_OFF();
-		LED_GREEN_OFF();
-
-		RED_OFF();
-		YELLOW_ON();
-		GREEN_OFF();
-
-		led_buffer[0] = counter % 10;
-		led_buffer[1] = counter / 10;
-		led_buffer[2] = counter % 10;
-		led_buffer[3] = counter / 10;
-
-		if(timer1_flag == 1){
-			status = S0;
-			counter = counter_green;
-			setTimer1(counter_green * 100);
-		}
-
-		if(isButton1Pressed() == 1){
-			status = SET_RED;
-			temp = 1;
-		}
-		break;
-
 	default:
-		fsm_setup_run();
 		break;
 	}
+	if(isButton2Pressed() == 1) counter--;
+	if(isButton3Pressed() == 1) counter++;
 }
+

@@ -10,24 +10,31 @@
 
 #include "main.h"
 
+extern int button1_flag;
+extern int button2_flag;
+extern int button3_flag;
+extern int button4_flag;
+
 #define NORMAL_STATE GPIO_PIN_SET
 #define PRESSED_STATE GPIO_PIN_RESET
 
-// Button 1
-extern int button1_flag;
-int isButton1Pressed(void);
-void getKeyInput1(void);
+int isButton1Pressed();
+void subKey1Process();
+void getKey1Input();
 
-// Button 2
-extern int button2_flag;
-int isButton2Pressed(void);
-void getKeyInput2(void);
+int isButton2Pressed();
+void subKey2Process();
+void getKey2Input();
 
-// Button 3
-extern int button3_flag;
-int isButton3Pressed(void);
-void getKeyInput3(void);
 
-void getKeyInput(void);
+int isButton3Pressed();
+void subKey3Process();
+void getKey3Input();
+
+int isButton4Pressed();
+void subKey4Process();
+void getKey4Input();
+
+
 
 #endif /* INC_BUTTON_H_ */

@@ -5,13 +5,11 @@
  *      Author: Admin
  */
 #include "global.h"
-int status = 0;
-int temp = 0;
-int counter = 0;
-int counter_green = 3;
-int counter_yellow = 2;
-int counter_red = 5;
 
+int status = 0;
+int status_ped = 0;
+int counter = 0;
+int counter_ped = 0;
 const uint8_t SEG_TABLE[10] = {
   0x3F, // 0 -> 0b00111111
   0x06, // 1 -> 0b00000110
@@ -24,9 +22,6 @@ const uint8_t SEG_TABLE[10] = {
   0x7F, // 8 -> 0b01111111
   0x6F  // 9 -> 0b01101111
 };
-
-int index_led = 0;
-int led_buffer[4] = {1,2,3,4};
 
 void display7SEG(int num){
 	if(num>9) return;

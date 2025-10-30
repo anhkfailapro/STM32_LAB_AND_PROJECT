@@ -8,30 +8,19 @@
 #ifndef INC_SOFTWARE_TIMER_H_
 #define INC_SOFTWARE_TIMER_H_
 
-// Timer 0
-extern int timer0_counter;
 extern int timer0_flag;
-void setTimer0(int duration);
-void timerRun0(void);
-
-// Timer 1
-extern int timer1_counter;
 extern int timer1_flag;
-void setTimer1(int duration);
-void timerRun1(void);
-
-// Timer 2
-extern int timer2_counter;
 extern int timer2_flag;
+
 void setTimer2(int duration);
-void timerRun2(void);
+void timerRun2();
+void runTimer2();
 
-// Timer 3
-extern int timer3_counter;
-extern int timer3_flag;
-void setTimer3(int duration);
-void timerRun3(void);
+void setTimer1(int duration);
+void timerRun1();
 
-void timerRun(void);
+void setTimer0(int duration);
+void timerRun0();
+
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

@@ -1,2 +1,0 @@
-fsm_setup.c:9:6:change_counter	40	static
-fsm_setup.c:50:6:fsm_setup_run	8	static
