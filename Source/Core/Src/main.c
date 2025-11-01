@@ -113,7 +113,7 @@ int main(void)
 		  if(counter >= 0) counter--;
 		  setTimer0(100);
 	  }
-	  if(timer3_flag == 1){
+	  if(timer3_flag == 1 /*&& (status == S0 || status == S1 || status == S2 || status == S3)*/){
 		  setTimer3(50);
 		  update7SEG(index_led);
 		  index_led++;
@@ -255,16 +255,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Button1_Pin Button2_Pin Button3_Pin */
-  GPIO_InitStruct.Pin = Button1_Pin|Button2_Pin|Button3_Pin;
+  /*Configure GPIO pins : Button1_Pin Button2_Pin Button3_Pin Button4_Pin */
+  GPIO_InitStruct.Pin = Button1_Pin|Button2_Pin|Button3_Pin|Button4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : EN0_Pin EN1A15_Pin */
-  GPIO_InitStruct.Pin = EN0_Pin|EN1A15_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }

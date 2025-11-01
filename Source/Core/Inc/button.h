@@ -28,6 +28,11 @@ extern int button3_flag;
 int isButton3Pressed(void);
 void getKeyInput3(void);
 
+// Button 4
+extern int button4_flag;
+int isButton4Pressed(void);
+void getKeyInput4(void);
+
 void getKeyInput(void);
 
 #endif /* INC_BUTTON_H_ */

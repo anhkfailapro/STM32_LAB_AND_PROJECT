@@ -10,6 +10,7 @@
 
 #include "global.h"
 #include "fsm_setup.h"
+#include "fsm_man.h"
 
 void fsm_automatic_run();
 

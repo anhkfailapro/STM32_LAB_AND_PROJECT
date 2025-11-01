@@ -25,6 +25,10 @@
 #define Change_red 92
 #define Change_yellow 93
 
+#define man_green 124
+#define man_red 122
+#define man_yellow 123
+
 #define LED_RED_ON()   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET)   // active-high
 #define LED_RED_OFF()  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET)
 
@@ -66,5 +70,6 @@ void allOn();
 void display7SEG(int num);
 void display7SEG2(int num);
 void SEG_Off();
+
 
 #endif /* INC_GLOBAL_H_ */

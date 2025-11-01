@@ -9,6 +9,8 @@
 #define INC_FSM_SETUP_H_
 
 #include "global.h"
+#include "fsm_man.h"
+
 void fsm_setup_run();
 void change_counter(int led);
 

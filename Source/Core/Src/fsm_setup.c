@@ -9,42 +9,68 @@
 void change_counter(int led){
 	int sum = 0;
 	int delta = 0;
-	switch (led) {
+	switch(led) {
 	case Change_red:
-		sum = counter_green + counter_yellow;
-		delta = counter_red - sum;
-		    counter_green += delta;
-		if (counter_green > 99) {
-			int excess = counter_green - 99;
-		    counter_green = 99;
-		    counter_yellow += excess;
-		    if (counter_yellow > 99) counter_yellow = 99;
-		}
-		    break;
+	if(counter_red == 1) {
+		counter_green = 1;
+		counter_yellow = 1;
+		counter_red = 2;
+		break;
+	}
+    sum = counter_green + counter_yellow;
+    delta = counter_red - sum;
 
-	    case Change_green:
+    // Nếu delta >= 0 (tăng)
+    if (delta >= 0) {
+        counter_green += delta;
+
+        if (counter_green > 99) {
+            int excess = counter_green - 99;
+            counter_green = 99;
+            counter_yellow += excess;
+            if (counter_yellow > 99) counter_yellow = 99;
+        }
+    }
+    // Nếu delta < 0 (giảm)
+    else {
+        counter_green += delta;   // giảm green trước
+
+        if (counter_green < 0) {
+            int shortage = -counter_green;
+            counter_green = 0;
+            counter_yellow -= shortage;
+            if (counter_yellow < 0) counter_yellow = 0;
+        }
+    }
+    break;
+	case Change_green:
 	    counter_red = counter_green + counter_yellow;
+
+	    // Nếu red vượt 99 → giảm yellow
 	    if (counter_red > 99) {
 	        int overflow = counter_red - 99;
 	        counter_red = 99;
 	        counter_yellow -= overflow;
-	        if (counter_yellow <= 0) counter_yellow = 1;
+	        if (counter_yellow < 0) counter_yellow = 0;
 	    }
+
+	    // Nếu green giảm → red giảm
+
 	    break;
+	case Change_yellow:
+	    counter_red = counter_green + counter_yellow;
 
-	    case Change_yellow:
-	        counter_red = counter_green + counter_yellow;
-	        if (counter_red > 99) {
-	            int overflow = counter_red - 99;
-	            counter_red = 99;
-	            counter_green -= overflow;
-	            if (counter_green <= 0) counter_green = 1;
-	        }
-	        break;
-
-	    default:
-	        break;
+	    if (counter_red > 99) {
+	        int overflow = counter_red - 99;
+	        counter_red = 99;
+	        counter_green -= overflow;
+	        if (counter_green < 0) counter_green = 0;
 	    }
+
+	    break;
+	 default:
+	    break;
+	}
 }
 
 void fsm_setup_run(){
@@ -136,6 +162,7 @@ void fsm_setup_run(){
 	        break;
 
 	    default:
+	    	fsm_man();
 	        break;
 	    }
 }

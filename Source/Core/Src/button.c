@@ -142,9 +142,55 @@ void getKeyInput3(){
 	}
 }
 
+// ---------------- BUTTON 4 ----------------
+int button4_flag = 0;
+int KeyReg0_4 = NORMAL_STATE;
+int KeyReg1_4 = NORMAL_STATE;
+int KeyReg2_4 = NORMAL_STATE;
+int KeyReg3_4 = NORMAL_STATE;
+int timeForKeyPress4 = 200;
+
+int isButton4Pressed(){
+	if(button4_flag == 1){
+		button4_flag = 0;
+		return 1;
+	}
+	return 0;
+}
+
+void subKeyProcess4(){
+	button4_flag = 1;
+	// TODO: Xử lý sự kiện Button4 nhấn (ví dụ: chuyển mode, reset, ...)
+}
+
+void getKeyInput4(){
+	KeyReg0_4 = KeyReg1_4;
+	KeyReg1_4 = KeyReg2_4;
+	KeyReg2_4 = HAL_GPIO_ReadPin(Button4_GPIO_Port, Button4_Pin);
+
+	if((KeyReg0_4 == KeyReg1_4) && (KeyReg1_4 == KeyReg2_4)){
+		if(KeyReg3_4 != KeyReg2_4){
+			KeyReg3_4 = KeyReg2_4;
+			if(KeyReg2_4 == PRESSED_STATE){
+				timeForKeyPress4 = 200;
+				subKeyProcess4();
+			}
+		} else {
+			if (timeForKeyPress4 > 0) timeForKeyPress4--;
+			if(timeForKeyPress4 == 0){
+				if(KeyReg2_4 == PRESSED_STATE){
+					subKeyProcess4();
+				}
+				timeForKeyPress4 = 200;
+			}
+		}
+	}
+}
+
 
 void getKeyInput(){
 	getKeyInput1();
 	getKeyInput2();
 	getKeyInput3();
+	getKeyInput4();
 }

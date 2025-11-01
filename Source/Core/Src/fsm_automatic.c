@@ -41,6 +41,10 @@ void fsm_automatic_run(){
 			status = SET_RED;
 			temp = 1;
 		}
+
+		if(isButton4Pressed() == 1){
+			status = man_green;
+		}
 		break;
 
 	case S1: //NS_Yellow, EW_Red
@@ -67,6 +71,10 @@ void fsm_automatic_run(){
 			status = SET_RED;
 			temp = 1;
 		}
+
+		if(isButton4Pressed() == 1){
+					status = man_green;
+				}
 		break;
 
 	case S2: //NS_Red, EW_Green
@@ -93,6 +101,10 @@ void fsm_automatic_run(){
 			status = SET_RED;
 			temp = 1;
 		}
+
+		if(isButton4Pressed() == 1){
+					status = man_red;
+				}
 		break;
 
 	case S3: //NS_Red, EW_Yellow
@@ -119,6 +131,11 @@ void fsm_automatic_run(){
 			status = SET_RED;
 			temp = 1;
 		}
+
+		if(isButton4Pressed() == 1){
+					status = man_red;
+				}
+
 		break;
 
 	default:
