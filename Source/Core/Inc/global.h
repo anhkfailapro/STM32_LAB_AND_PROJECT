@@ -11,6 +11,10 @@
 #include "button.h"
 #include "software_timer.h"
 
+#define default_red 5;
+#define default_yellow 2
+#define default_green 3
+
 #define INIT 1
 #define S0 2 	//NS_Green, EW_Red
 #define S1 3 	//NS_Yellow, EW_Red
@@ -71,5 +75,6 @@ void display7SEG(int num);
 void display7SEG2(int num);
 void SEG_Off();
 
+void error_case();
 
 #endif /* INC_GLOBAL_H_ */

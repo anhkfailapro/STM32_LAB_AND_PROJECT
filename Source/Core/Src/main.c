@@ -108,6 +108,8 @@ int main(void)
   while (1)
   {
 	  fsm_automatic_run();
+	  fsm_man();
+	  fsm_setup_run();
 	  if(timer0_flag == 1){
 		  HAL_GPIO_TogglePin(AUTO_GPIO_Port, AUTO_Pin);
 		  if(counter >= 0) counter--;

@@ -139,7 +139,6 @@ void fsm_automatic_run(){
 		break;
 
 	default:
-		fsm_setup_run();
 		break;
 	}
 }

@@ -12,9 +12,7 @@ void change_counter(int led){
 	switch(led) {
 	case Change_red:
 	if(counter_red == 1) {
-		counter_green = 1;
-		counter_yellow = 1;
-		counter_red = 2;
+		error_case();
 		break;
 	}
     sum = counter_green + counter_yellow;
@@ -162,7 +160,6 @@ void fsm_setup_run(){
 	        break;
 
 	    default:
-	    	fsm_man();
 	        break;
 	    }
 }

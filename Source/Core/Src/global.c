@@ -94,3 +94,9 @@ void SEG_Off(){
 	HAL_GPIO_WritePin(F_GPIO_Port, F_Pin, SET);
 	HAL_GPIO_WritePin(G_GPIO_Port, G_Pin, SET);
 }
+
+void error_case(){
+	counter_red = 2;
+	counter_green = 1;
+	counter_yellow = 1;
+}
