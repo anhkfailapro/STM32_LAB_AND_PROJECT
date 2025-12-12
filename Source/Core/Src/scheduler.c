@@ -1,5 +1,3 @@
-#include "main.h"
-#include "task.h"
 #include "scheduler.h"
 
 void SCH_Init() {

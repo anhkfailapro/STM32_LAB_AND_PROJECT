@@ -56,7 +56,19 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
+void toggleLedAuto(){
+	if(timer0_flag == 1){
+    HAL_GPIO_TogglePin(AUTO_GPIO_Port, AUTO_Pin);
+    if(counter >= 0) counter--;
+    setTimer0(100);
+	}
+}
 
+void update7SEGTask(){
+    update7SEG(index_led);
+    index_led++;
+    if(index_led > 1) index_led = 0;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -98,33 +110,28 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //status = INIT;
-  //counter = 0;
-  //counter_green = 3;
-  //counter_red = 5;
-  //counter_yellow = 2;
-  //setTimer0(100);
+  status = INIT;
+  counter = 0;
+  counter_green = 3;
+  counter_red = 5;
+  counter_yellow = 2;
+  setTimer0(100);
 
+
+  SCH_Init();
+  SCH_Add_Task(timerRun, 0, 10);
+  SCH_Add_Task(fsm_automatic_run, 0, 50);   // chạy mỗi 100ms
+  SCH_Add_Task(fsm_man, 0, 50);
+  SCH_Add_Task(fsm_setup_run, 0, 50);
+  SCH_Add_Task(toggleLedAuto, 0, 1000);
+  SCH_Add_Task(update7SEGTask, 0, 500);
+  SCH_Add_Task(getKeyInput, 0, 10);
 
   //setTimer2(10);
   //setTimer3(10);
   while (1)
   {
-	  fsm_automatic_run();
-	  fsm_man();
-	  fsm_setup_run();
-	  if(timer0_flag == 1){
-		  HAL_GPIO_TogglePin(AUTO_GPIO_Port, AUTO_Pin);
-		  if(counter >= 0) counter--;
-		  setTimer0(100);
-	  }
-	  if(timer3_flag == 1 /*&& (status == S0 || status == S1 || status == S2 || status == S3)*/){
-		  setTimer3(50);
-		  update7SEG(index_led);
-		  index_led++;
-		  if(index_led > 1) index_led = 0;
-	  }
-	  //fsm_setup_run();
+	 SCH_Dispatch_Tasks();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -270,8 +277,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	timerRun();
-	getKeyInput();
+	SCH_Update();
 }
 /* USER CODE END 4 */
 

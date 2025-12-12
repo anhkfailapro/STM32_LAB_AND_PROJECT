@@ -5,6 +5,9 @@
  *      Author: ADMIN
  */
 
+#include "main.h"
+//#include "task.h"
+
 #ifndef INC_SCHEDULER_H_
 #define INC_SCHEDULER_H_
 
