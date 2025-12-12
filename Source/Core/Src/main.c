@@ -26,6 +26,7 @@
 #include "button.h"
 #include "fsm_automatic.h"
 #include "fsm_setup.h"
+#include "scheduler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,12 +98,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  status = INIT;
-  counter = 0;
-  counter_green = 3;
-  counter_red = 5;
-  counter_yellow = 2;
-  setTimer0(100);
+  //status = INIT;
+  //counter = 0;
+  //counter_green = 3;
+  //counter_red = 5;
+  //counter_yellow = 2;
+  //setTimer0(100);
+
+
   //setTimer2(10);
   //setTimer3(10);
   while (1)

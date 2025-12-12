@@ -22,7 +22,7 @@ void  fsm_man(){
 		break;
 	case man_green:
 		LED_RED_OFF(); LED_GREEN_ON(); LED_YELLOW_OFF();
-		RED_ON(); GREEN_OFF(); YELLOW_OFF();...
+		RED_ON(); GREEN_OFF(); YELLOW_OFF();
 
 		SEG_Off();
 		if(isButton4Pressed() == 1){
